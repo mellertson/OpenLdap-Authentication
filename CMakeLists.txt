@@ -10,3 +10,4 @@ add_executable(ldap_authenticate ${SOURCE_FILES})
 # Link additional libaries
 # **********************************************
 target_link_libraries(ldap_authenticate ldap)
+target_link_libraries(ldap_authenticate lber)
