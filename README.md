@@ -1,4 +1,4 @@
-# Example: password authentication using OpenLDAP
+# Example: Password Authentication Using OpenLDAP
 
 While working on a project, I built this simple example, using the OpenLDAP libraries to authenticate user credentials against a version 3 LDAP.  This example is based on my own retooling of code and examples found in a few different places:
 * a post on [StackOverflow](http://stackoverflow.com/questions/16168293/how-to-do-password-authentication-for-a-user-using-ldap).
