@@ -6,25 +6,37 @@
 
 using namespace std;
 
-#define LDAP_PORT 389
 
+// **************************************************
+// Global variables
 int version = LDAP_VERSION3;
-LDAP *ld, *ld2;
-int  return_code;
+char ldap_uri[255];
+
+// **************************************************
+// These will be static class attributes, and
+// will be set in the constructor
+#define LDAP_PORT 389
 const char *ldap_host     = "ldap.forumsys.com";
 const char *base_dn       = "dc=example,dc=com";
 const char *admin_dn      = "cn=read-only-admin,dc=example,dc=com";
 char *admin_pw            = strdup("password");
+berval credentials = { strlen(admin_pw), admin_pw }; // Admin credentials on LDAP server
+
+// **************************************************************
+// These will be passed as args into into verifyCredentials()
 char *user_dn             = NULL;
 char *user_pw             = strdup("password");
 char *user_id             = strdup("uid=einstein");
+berval user_cred = { strlen(user_pw), user_pw }; // User's credentials on LDAP server
 
-char ldap_uri[255];
+// **************************************************************
+// Local variables in the verifyCredentials() method
+LDAP *ld, *ld2;
+int  return_code;
 char *ldapErrorString = NULL;
-berval credentials = { strlen(admin_pw), admin_pw }; // Admin credentials on LDAP server
-berval user_cred = { strlen(user_pw), user_pw }; // Admin credentials on LDAP server
 berval *returned_cred = NULL;
 LDAPMessage *records=NULL, *record=NULL;    // Results from a search on LDAP server
+
 
 int main() {
 	// ************************
