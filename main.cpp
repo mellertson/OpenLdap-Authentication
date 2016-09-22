@@ -3,9 +3,7 @@
 #include <ldap.h>
 #include <ldap_schema.h>
 
-
 using namespace std;
-
 
 // **************************************************
 // Global variables
