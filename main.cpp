@@ -26,7 +26,7 @@ berval credentials = { strlen(admin_pw), admin_pw }; // Admin credentials on LDA
 // These will be passed as args into into verifyCredentials()
 char *user_dn             = NULL;
 char *user_pw             = strdup("password");
-char *user_id             = strdup("uid=einstein");
+char *user_filter             = strdup("uid=einstein");
 berval user_cred = { strlen(user_pw), user_pw }; // User's credentials on LDAP server
 
 // **************************************************************
@@ -71,7 +71,7 @@ int main() {
 
 	// *****************************************************
 	// Search for the user's record on the LDAP server
-	return_code = ldap_search_ext_s(ld, base_dn, LDAP_SCOPE_SUBTREE, user_id, NULL, 0, NULL, NULL, NULL, 0, &records);
+	return_code = ldap_search_ext_s(ld, base_dn, LDAP_SCOPE_SUBTREE, user_filter, NULL, 0, NULL, NULL, NULL, 0, &records);
 	if ( return_code != LDAP_SUCCESS ) {
 		// Output the error message
 		fprintf(stderr, "The username is invalid: %s\n", ldap_err2string(return_code));
